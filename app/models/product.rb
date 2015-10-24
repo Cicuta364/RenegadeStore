@@ -9,8 +9,8 @@ class Product < ActiveRecord::Base
 	has_many :user_likes, through: :likes, source: :user
 
 
-	validates :title, presence: true
-	validates :content, presence: true
+	validates :name, presence: true
+	validates :description, presence: true
 
 	def remove_like (user)
 		self.likes.where(user: user).first.delete
