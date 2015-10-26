@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :orders
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :review_likes, through: :likes, source: :review
 

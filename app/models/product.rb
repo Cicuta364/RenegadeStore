@@ -2,14 +2,14 @@ class Product < ActiveRecord::Base
 
 	has_many :reviews, dependent: :destroy
 	has_many :product_orders
-	has_many :orders, dependent: :destroy
+	has_many :orders, through: :product_orders
 
 
 	has_many :likes, as: :likeable
 	has_many :user_likes, through: :likes, source: :user
 
 
-	validates :name, presence: true
+	validates :name, :price, :stock, presence: true
 	validates :description, presence: true
 
 	def remove_like (user)
