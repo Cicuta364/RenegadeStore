@@ -7,7 +7,7 @@ class Ability
     user ||= User.new(role: 1) # guest user (not logged in)
        if user.admin?
          can :manage, :all
-        elsif user.editor?
+        elsif user.client?
             can :read, :all
             can :create, :all
             can :edit, [Review]
@@ -36,5 +36,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-  end
 end
