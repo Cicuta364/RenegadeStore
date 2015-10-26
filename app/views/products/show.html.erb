@@ -39,3 +39,31 @@
       <% end %>
     </p>
   <% end %>
+
+  <%= form_for [@product, Review.new] do |f| %>
+    <p><%= f.label :content, "Escribe tu comentario:"  %></p>
+    <%= f.text_area :content  %>
+    <%= f.submit "Enviar"   %>
+  <% end %>
+
+<h2>Comentarios:</h2>
+
+  <% @reviews.each do |r| %>
+    <hr>
+      <p><small><%= time_ago_in_words r.created_at %></small></p>
+      <p><%= r.content  %></p>
+      <small>by: <%= r.user %></small>
+
+      <p> Likes: <strong><%= r.likes.count %></strong> </p>
+
+      <% if can? :like, Review %>
+        <p>
+          <% unless r.liked_by? current_user %>
+            <%= link_to 'Me Gusta', like_product_review_path(@product, r) %>
+          <% else %>
+            <%= link_to 'Ya No Me Gusta', like_product_review_path(@product, r) %>
+          <% end %>
+        </p>
+      <% end %>
+    <hr>
+  <% end %>

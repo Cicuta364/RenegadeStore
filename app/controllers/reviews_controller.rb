@@ -1,16 +1,15 @@
-class ReviewController < ApplicationController
+class ReviewsController < ApplicationController
 	load_and_authorize_resource
 
   def create
-  	@product = Product.find(params[:post_id])
-  	@reviews = @product.reviews
+  	@product = Product.find(params[:product_id])
 
-
-  	@reviews = @product.reviews.build(review_params)
+    @reviews = @product.reviews
+    @reviews = @product.reviews.build(review_params)
     @reviews.user = current_user if user_signed_in?
   	@reviews.save
 
-  	redirect_to @product
+  	redirect_to product_path(@product)
   end
 
   def destroy
@@ -19,7 +18,7 @@ class ReviewController < ApplicationController
   end
 
   def like
-    @product = Product.find(params[:post_id])
+    @product = Product.find(params[:product_id])
     @review = Review.find(params[:id])
     @like = @review.likes.build(user: current_user)
 
@@ -38,5 +37,4 @@ class ReviewController < ApplicationController
 		def review_params
 			params.require(:review).permit(:content)
 		end
-	end
 end

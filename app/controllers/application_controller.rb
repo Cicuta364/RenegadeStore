@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: 'Su usuario no esta autorizado para realizar esta accion'
 	end
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
 	def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) << [:name, :lastname, :username]
       devise_parameter_sanitizer.for(:account_update) << [:name, :lastname, :username]
