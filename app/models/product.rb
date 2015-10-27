@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+	belongs_to :category
+
 	has_many :reviews, dependent: :destroy
 	has_many :product_orders
 	has_many :orders, through: :product_orders

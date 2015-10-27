@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    resources :reviews, only: [:create] do
+    resources :reviews, only: [:create, :edit] do
       member do
         get 'like'
       end
