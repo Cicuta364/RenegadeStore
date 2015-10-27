@@ -29,3 +29,16 @@ users << User.create(
   password: 'voronwe364',
   role: 1
 )
+
+category = []
+
+category << Category.create(name: 'X-wing')
+category << Category.create(name: 'Warmachine')
+category << Category.create(name: 'Warhammer')
+category << Category.create(name: 'Dbmm')
+category << Category.create(name: 'Play Mats')
+category << Category.create(name: 'Bolsos')
+category << Category.create(name: 'Esponjas')
+category << Category.create(name: 'Otros Juegos')
+category << Category.create(name: 'Juegos de Mesa')
+category << Category.create(name: 'Especiales')
