@@ -3,7 +3,7 @@
 		<%= link_to 'Ingresar', new_user_session_path %>
 		<%= link_to 'Registrarse', new_user_registration_path %>
 	<% else %>
-		<%= link_to current_user.email, edit_user_registration_path %>
+		<%= link_to current_user.username, edit_user_registration_path %>
 		<small> <%= current_user.role %></small>
 		<%= link_to 'Salir', destroy_user_session_path, method: :delete  %>
 	<% end %>

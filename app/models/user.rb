@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :reviews, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
-  has_many :review_likes, through: :likes, source: :review
+  has_many :pruduct_likes, through: :likes, source: :likeable, source_type: 'Product'
+  has_many :review_likes, through: :likes, source: :likeable, source_type: 'Review'
 
+  validates :name, :last_name, :username, presence: true
   validates :username, uniqueness: { case_sensitive: false }
   validate :validate_username
 

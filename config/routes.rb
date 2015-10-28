@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   end
 
 
-  resources :products do
-    resources :reviews, only: [:create, :edit] do
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: :create do
       member do
         get 'like'
       end
@@ -27,6 +27,16 @@ Rails.application.routes.draw do
         get 'like'
     end
   end
+
+  namespace :admin do
+    resources :products
+    resources :users
+    resources :orders
+    get '/', to: 'pages#index'
+  end
+
+  get 'cart/:user_id', to: 'carts#show', as: 'cart'
+  delete 'cart/:id', to: 'carts#destroy'
 
   root 'products#index'
   # The priority is based upon order of creation: first created -> highest priority.

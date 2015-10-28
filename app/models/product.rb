@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
 	has_many :reviews, dependent: :destroy
 	has_many :product_orders
 	has_many :orders, through: :product_orders
+	has_many :carts
 
 
 	has_many :likes, as: :likeable

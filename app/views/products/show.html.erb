@@ -25,13 +25,12 @@
   <%= @product.stock %>
 </p>
 
-<p>
-  <strong>Photos:</strong>
-  <%= @product.photos %>
-</p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= image_tag @product.photos, width: '500px' %>
+
+
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<%= link_to 'Back', admin_products_path %>
 
 <p> Likes: <strong><%= @product.likes.count %></strong> </p>
 
@@ -58,8 +57,6 @@
       <p><small><%= time_ago_in_words r.created_at %></small></p>
       <p><%= r.content  %></p>
       <small>by: <%= r.user %></small>
-
-      <#%= link_to 'Edit', edit_product_review_path(@review) %>
 
       <p> Likes: <strong><%= r.likes.count %></strong> </p>
 
