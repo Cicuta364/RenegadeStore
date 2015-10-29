@@ -5,6 +5,9 @@
 	<% else %>
 		<%= link_to current_user.username, edit_user_registration_path %>
 		<small> <%= current_user.role %></small>
+		<% if user_signed_in? && current_user.admin? %>
+			<%= link_to 'Admin-Console', admin_path %>
+		<% end %>
 		<%= link_to 'Salir', destroy_user_session_path, method: :delete  %>
 	<% end %>
 
